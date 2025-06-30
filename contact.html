@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Page</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="loader.css">
+  <link rel="icon" type="image/x-icon" href="Neuron.png">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: #151F28 url('cool.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #f5f5f5;
+      position: relative;
+    }
+    .main-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 3;
+      width: 100%;
+    }
+    .contact-card {
+      background: rgba(24,24,27,0.92);
+      border-radius: 24px;
+      box-shadow: 0 0 32px 8px #000a, 0 4px 24px #ffd74044;
+      border: 2.5px solid #ffd740;
+      max-width: 350px;
+      width: 100%;
+      padding: 48px 32px 40px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      backdrop-filter: blur(4px);
+      margin: 32px 0;
+    }
+    .contact-title {
+      font-family: 'Orbitron', Arial, sans-serif;
+      color: #ffd740;
+      font-size: 2rem;
+      margin-bottom: 32px;
+      text-align: center;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 16px #23232b, 0 1px 0 #fff2;
+    }
+    .contact-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+      align-items: center;
+    }
+    .contact-btn {
+      width: 200px;
+      height: 48px;
+      border-radius: 12px;
+      border: none;
+      font-size: 1.15rem;
+      font-weight: bold;
+      color: #fff;
+      background: #1877f3;
+      box-shadow: 0 0 16px 4px #1877f3, 0 2px 8px rgba(0,0,0,0.15);
+      transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      outline: none;
+    }
+    .contact-btn.instagram {
+      background: #E1306C;
+      box-shadow: 0 0 16px 4px #E1306C, 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .contact-btn:hover, .contact-btn:focus {
+      background: #ffd740;
+      color: #181b22;
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 4px 24px #ffd74066;
+      text-decoration: none;
+    }
+    .sticky-audio-card-outer {
+      position: fixed;
+      top: 130px;  /* Lowered further for more space below the back button */
+      left: 32px;
+      z-index: 1002;
+      width: 320px;
+      max-width: 95vw;
+      background: transparent;
+      padding-top: 0;
+    }
+    .custom-audio-card {
+      background: #181b22;
+      color: #fff;
+      border-radius: 22px;
+      box-shadow: 0 4px 32px #000a, 0 2px 8px #23232b88;
+      width: 100%;
+      padding: 24px 18px 18px 18px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Montserrat', Arial, sans-serif;
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+    .custom-audio-card:hover {
+      transform: translateY(-6px) scale(1.035);
+      box-shadow: 0 12px 48px #ffd74066, 0 2px 24px #000a;
+      background: linear-gradient(120deg, #1d2026 70%, #23232b 100%);
+    }
+    .audio-cover {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 14px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 12px #0006;
+    }
+    .audio-info {
+      text-align: left;
+      width: 100%;
+      margin-bottom: 18px;
+    }
+    .audio-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ffd740;
+      line-height: 1.2;
+    }
+    .audio-artist {
+      font-size: 1rem;
+      color: #bdbdbd;
+      margin-top: 2px;
+    }
+    .audio-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 26px;
+      margin: 14px 0 10px 0;
+    }
+    .audio-controls button {
+      background: none;
+      border: none;
+      color: #ffd740;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: color 0.2s, transform 0.2s;
+      outline: none;
+      padding: 6px 10px;
+      border-radius: 50%;
+    }
+    .audio-controls button:hover, .audio-controls button:focus {
+      color: #fff;
+      background: #23232b;
+      transform: scale(1.15);
+    }
+    .audio-progress {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      gap: 8px;
+      margin-top: 6px;
+    }
+    .audio-progress input[type="range"] {
+      flex: 1;
+      accent-color: #ffd740;
+      height: 3px;
+      background: #23232b;
+      border-radius: 3px;
+      outline: none;
+    }
+    .audio-progress span {
+      font-size: 0.95rem;
+      color: #ffd740;
+      min-width: 38px;
+      text-align: center;
+    }
+    .back-btn {
+      position: fixed;
+      top: 24px;
+      left: 40px;
+      z-index: 2000;
+      background: #181b22;
+      color: #ffd740;
+      border: 2px solid #ffd740;
+      border-radius: 12px;
+      padding: 10px 22px 10px 18px;
+      font-size: 1.1rem;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 12px #0006;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .back-btn:hover, .back-btn:focus {
+      background: #ffd740;
+      color: #181b22;
+      box-shadow: 0 4px 24px #ffd74066;
+    }
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 16px 0;
+      background: rgba(10,25,47,0.85);
+      color: #e0eafc;
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin-top: auto;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+    @media (max-width: 900px) {
+      .sticky-audio-card-outer {
+        position: static;
+        width: 98vw;
+        margin: 0 auto 24px auto;
+        left: 0;
+        top: 0;
+        max-width: 98vw;
+        padding-top: 0;
+      }
+      .main-content {
+        width: 100vw;
+        margin-left: 0;
+        align-items: center;
+        padding-left: 0;
+      }
+      .contact-card {
+        max-width: 98vw;
+        padding: 32px 8vw 32px 8vw;
+      }
+    }
+    @media (max-width: 600px) {
+      .contact-card {
+        padding: 24px 2vw 24px 2vw;
+      }
+      .sticky-audio-card-outer {
+        width: 98vw;
+        left: 0;
+        top: 0;
+      }
+      .back-btn {
+        left: 10px;
+        top: 10px;
+        padding: 8px 14px 8px 12px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="loader">
+    <div class="loader-content">
+      <div class="loader-spinner">
+        <i class="fa fa-circle-o-notch"></i>
+      </div>
+      <div class="loader-text">
+        Loading<span class="dot1">.</span><span class="dot2">.</span><span class="dot3">.</span>
+      </div>
+    </div>
+  </div>
+  <!-- Sticky audio card OUTSIDE of main-content and flex -->
+  <div class="sticky-audio-card-outer">
+    <div class="custom-audio-card">
+      <img class="audio-cover" src="lotus.jpg" alt="Album Art">
+      <div class="audio-info">
+        <div class="audio-title">This Is What You Are</div>
+        <div class="audio-artist">Keith Power</div>
+      </div>
+      <div class="audio-controls">
+        <button id="prevBtn" title="Previous"><i class="fa fa-backward"></i></button>
+        <button id="playPauseBtn" title="Play/Pause"><i class="fa fa-play"></i></button>
+        <button id="nextBtn" title="Next"><i class="fa fa-forward"></i></button>
+      </div>
+      <div class="audio-progress">
+        <span id="currentTime">0:00</span>
+        <input type="range" id="seekBar" value="0" min="0" max="100">
+        <span id="duration">0:00</span>
+      </div>
+      <audio id="mainAudio" src="This Is What You Are.mp3"></audio>
+    </div>
+  </div>
+  
+  <button onclick="window.location.href='index.html'" class="back-btn">
+    <i class="fa fa-arrow-left"></i> Back
+  </button>
+  
+  <div class="main-content">
+    <div class="contact-card">
+      <div class="contact-title">Contact Information</div>
+      <div class="contact-buttons">
+        <a href="https://www.facebook.com/jack.theweirdo.5/" class="contact-btn" target="_blank" rel="noopener">
+          <i class="fa fa-facebook-official" style="margin-right:10px"></i> Facebook
+        </a>
+        <a href="https://www.instagram.com/the_meme_collectord/" class="contact-btn instagram" target="_blank" rel="noopener">
+          <i class="fa fa-instagram" style="margin-right:10px"></i> Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Aidan Fikri. All rights reserved.
+  </footer>
+
+  <script>
+    setInterval(function() {
+      var d = Date.now() % 1200;
+      document.querySelector('.dot1').style.opacity = (d < 400) ? "1" : "0.2";
+      document.querySelector('.dot2').style.opacity = (d < 800 && d >= 400) ? "1" : "0.2";
+      document.querySelector('.dot3').style.opacity = (d >= 800) ? "1" : "0.2";
+    }, 120);
+
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        var loader = document.getElementById('loader');
+        loader.classList.add('fade-out');
+        setTimeout(function() {
+          loader.style.display = 'none';
+        }, 700);
+      }, 1200);
+    });
+
+    // Audio player functionality
+    const audio = document.getElementById('mainAudio');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const seekBar = document.getElementById('seekBar');
+    const currentTimeLabel = document.getElementById('currentTime');
+    const durationLabel = document.getElementById('duration');
+
+    audio.addEventListener('loadedmetadata', () => {
+      durationLabel.innerText = formatTime(audio.duration);
+      seekBar.max = Math.floor(audio.duration);
+    });
+
+    playPauseBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playPauseBtn.innerHTML = '<i class="fa fa-pause"></i>';
+      } else {
+        audio.pause();
+        playPauseBtn.innerHTML = '<i class="fa fa-play"></i>';
+      }
+    });
+
+    prevBtn.addEventListener('click', () => {
+      audio.currentTime = Math.max(0, audio.currentTime - 10);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      audio.currentTime = Math.min(audio.duration, audio.currentTime + 10);
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      currentTimeLabel.innerText = formatTime(audio.currentTime);
+      seekBar.value = Math.floor(audio.currentTime);
+    });
+
+    seekBar.addEventListener('input', () => {
+      audio.currentTime = seekBar.value;
+    });
+
+    function formatTime(seconds) {
+      const minutes = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${minutes}:${secs < 10 ? '0' + secs : secs}`;
+    }
+  </script>
+</body>
+</html>
